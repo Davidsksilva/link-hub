@@ -10,7 +10,6 @@
         "airbnb",
         "plugin:@typescript-eslint/recommended",
         "prettier/@typescript-eslint",
-        "prettier/standard",
         "prettier/react"
     ],
     "parser": "@typescript-eslint/parser",
@@ -35,6 +34,7 @@
         "implicit-arrow-linebreak": "off",
         "import/prefer-default-export": "off",
         "jsx-a11y/anchor-is-valid": "off",
+        "object-curly-newline":"off",
         "import/extensions": [
           "error",
           "ignorePackages",

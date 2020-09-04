@@ -5,7 +5,7 @@ export const Header = styled.header`
   width: 100%;
   padding: 0 42px;
 
-  background: ${(props) => props.theme.colors.header};
+  /* background: ${(props) => props.theme.colors.header}; */
 
   display: flex;
   flex-direction: row;
@@ -13,7 +13,7 @@ export const Header = styled.header`
   align-items: center;
 
   h1 {
-    color: ${(props) => props.theme.colors.light};
+    /* color: ${(props) => props.theme.colors.light}; */
     font-weight: 400;
   }
 `;
@@ -25,7 +25,7 @@ export const Navigation = styled.nav`
 
   a {
     text-decoration: none;
-    color: ${(props) => props.theme.colors.light};
+    /* color: ${(props) => props.theme.colors.light}; */
     font-size: 18px;
   }
 `;

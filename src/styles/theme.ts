@@ -1,11 +1,15 @@
-const theme = {
+import { theme } from '@chakra-ui/core';
+
+const customTheme = {
+  ...theme,
   colors: {
-    background: '#cbeaed',
-    header: '#006a71',
-    light: '#ffffdd',
-    text: '#000000',
-    primary: '#d3de32',
+    ...theme.colors,
+    brand: {
+      900: '#1a365d',
+      800: '#153e75',
+      700: '#2a69ac',
+    },
   },
 };
 
-export default theme;
+export default customTheme;
