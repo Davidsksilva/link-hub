@@ -1,5 +1,6 @@
 import React from 'react';
-import { Flex, Box, Link, Button, useTheme, Text } from '@chakra-ui/core';
+import { Flex, Box, Button, useTheme, Text } from '@chakra-ui/core';
+import Link from 'next/link';
 
 const AppHeader: React.FC = () => {
   const theme = useTheme();
@@ -18,14 +19,14 @@ const AppHeader: React.FC = () => {
         link-hub
       </Text>
       <Box>
-        <Link href="/login">
+        <Link href="/signin">
           <Button
             variant="ghost"
             color="white"
             mr={theme.space[4]}
             _hover={{ bg: theme.colors.cyan[500] }}
           >
-            Login
+            Sign in
           </Button>
         </Link>
 
