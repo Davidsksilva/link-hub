@@ -1,24 +1,19 @@
 import React from 'react';
 import Head from 'next/head';
-import Link from 'next/link';
 import {
   Button,
   Box,
   Flex,
-  Text,
   useTheme,
   FormControl,
   FormLabel,
   Input,
-  FormHelperText,
   Heading,
-  Stack,
-  InputGroup,
-  InputRightElement,
   FormErrorMessage,
 } from '@chakra-ui/core';
 import { Formik, Field } from 'formik';
 import * as Yup from 'yup';
+import AppHeader from '../components/AppHeader';
 
 const SignInSchema = Yup.object().shape({
   email: Yup.string().required('Email required'),
@@ -41,42 +36,7 @@ const Home: React.FC = () => {
           display="flex"
           flexDirection="column"
         >
-          <Flex
-            as="header"
-            bg="cyan.600"
-            height="60px"
-            direction="row"
-            align="center"
-            justify="space-between"
-            px="5"
-          >
-            <Text color={theme.colors.white} fontSize={theme.fontSizes['2xl']}>
-              link-hub
-            </Text>
-            <Box>
-              <Link href="/login">
-                <Button
-                  variant="ghost"
-                  color="white"
-                  mr={theme.space[4]}
-                  _hover={{ bg: theme.colors.cyan[500] }}
-                >
-                  Login
-                </Button>
-              </Link>
-
-              <Link href="/register">
-                <Button
-                  variant="ghost"
-                  color="white"
-                  _hover={{ bg: theme.colors.cyan[500] }}
-                >
-                  Register
-                </Button>
-              </Link>
-            </Box>
-          </Flex>
-
+          <AppHeader />
           <Flex direction="row" align="center" justify="center" flex="1">
             <Flex direction="column" minW={320}>
               <Heading>Sign in</Heading>
@@ -87,7 +47,6 @@ const Home: React.FC = () => {
                 validationSchema={SignInSchema}
                 onSubmit={(values, { setSubmitting }) => {
                   setTimeout(() => {
-                    alert(JSON.stringify(values, null, 2));
                     setSubmitting(false);
                   }, 400);
                 }}
