@@ -74,7 +74,7 @@ const SignUp: React.FC = () => {
               <Text
                 cursor="pointer"
                 userSelect="none"
-                color={theme.colors.cyan[600]}
+                color={theme.colors.blue[600]}
                 fontSize={theme.fontSizes['2xl']}
               >
                 link-hub
@@ -85,7 +85,7 @@ const SignUp: React.FC = () => {
               Already have an account?
               <Link href="/signin">
                 <Button
-                  variantColor="cyan"
+                  variantColor="blue"
                   variant="outline"
                   ml={theme.space[4]}
                 >
@@ -127,7 +127,7 @@ const SignUp: React.FC = () => {
                                   <FormLabel htmlFor="name">Name</FormLabel>
                                   <Input
                                     {...field}
-                                    focusBorderColor={theme.colors.cyan[500]}
+                                    focusBorderColor={theme.colors.blue[500]}
                                     id="name"
                                     placeholder="Enter name"
                                   />
@@ -152,7 +152,7 @@ const SignUp: React.FC = () => {
                                   </FormLabel>
                                   <Input
                                     {...field}
-                                    focusBorderColor={theme.colors.cyan[500]}
+                                    focusBorderColor={theme.colors.blue[500]}
                                     id="username"
                                     placeholder="Enter username"
                                   />
@@ -179,7 +179,7 @@ const SignUp: React.FC = () => {
                               </FormLabel>
                               <Input
                                 {...field}
-                                focusBorderColor={theme.colors.cyan[500]}
+                                focusBorderColor={theme.colors.blue[500]}
                                 id="email"
                                 placeholder="Enter email address"
                               />
@@ -200,7 +200,7 @@ const SignUp: React.FC = () => {
                             >
                               <FormLabel htmlFor="password">Password</FormLabel>
                               <Input
-                                focusBorderColor={theme.colors.cyan[500]}
+                                focusBorderColor={theme.colors.blue[500]}
                                 {...field}
                                 id="password"
                                 placeholder="Enter password"
@@ -225,7 +225,7 @@ const SignUp: React.FC = () => {
                                 Password confirmation
                               </FormLabel>
                               <Input
-                                focusBorderColor={theme.colors.cyan[500]}
+                                focusBorderColor={theme.colors.blue[500]}
                                 {...field}
                                 id="passwordConfirmation"
                                 placeholder="Enter password confirmation"
@@ -240,7 +240,7 @@ const SignUp: React.FC = () => {
 
                       <Button
                         isFullWidth
-                        variantColor="cyan"
+                        variantColor="blue"
                         isLoading={props.isSubmitting}
                         type="submit"
                       >

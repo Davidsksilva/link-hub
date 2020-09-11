@@ -50,7 +50,7 @@ const SignIn: React.FC = () => {
               <Text
                 cursor="pointer"
                 userSelect="none"
-                color={theme.colors.cyan[600]}
+                color={theme.colors.blue[600]}
                 fontSize={theme.fontSizes['2xl']}
               >
                 link-hub
@@ -61,7 +61,7 @@ const SignIn: React.FC = () => {
               Don&apos;t have an account?
               <Link href="/signup">
                 <Button
-                  variantColor="cyan"
+                  variantColor="blue"
                   variant="outline"
                   ml={theme.space[4]}
                 >
@@ -97,7 +97,7 @@ const SignIn: React.FC = () => {
                           <FormLabel htmlFor="email">Email address</FormLabel>
                           <Input
                             {...field}
-                            focusBorderColor={theme.colors.cyan[500]}
+                            focusBorderColor={theme.colors.blue[500]}
                             id="email"
                             placeholder="Enter email address"
                           />
@@ -117,7 +117,7 @@ const SignIn: React.FC = () => {
                         >
                           <FormLabel htmlFor="password">Password</FormLabel>
                           <Input
-                            focusBorderColor={theme.colors.cyan[500]}
+                            focusBorderColor={theme.colors.blue[500]}
                             {...field}
                             id="password"
                             placeholder="Enter password"
@@ -132,7 +132,7 @@ const SignIn: React.FC = () => {
                     <Button
                       mt={theme.space[6]}
                       isFullWidth
-                      variantColor="cyan"
+                      variantColor="blue"
                       isLoading={props.isSubmitting}
                       type="submit"
                     >
