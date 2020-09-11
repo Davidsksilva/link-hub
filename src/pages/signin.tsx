@@ -10,10 +10,11 @@ import {
   Input,
   Heading,
   FormErrorMessage,
+  Text,
 } from '@chakra-ui/core';
 import { Formik, Field } from 'formik';
+import Link from 'next/link';
 import * as Yup from 'yup';
-import AppHeader from '../components/AppHeader';
 
 const SignInSchema = Yup.object().shape({
   email: Yup.string().required('Email required'),
@@ -36,7 +37,39 @@ const SignIn: React.FC = () => {
           display="flex"
           flexDirection="column"
         >
-          <AppHeader />
+          <Flex
+            as="header"
+            bg={theme.colors.transparent}
+            height="60px"
+            direction="row"
+            align="center"
+            justify="space-between"
+            px="5"
+          >
+            <Link href="/">
+              <Text
+                cursor="pointer"
+                userSelect="none"
+                color={theme.colors.cyan[600]}
+                fontSize={theme.fontSizes['2xl']}
+              >
+                link-hub
+              </Text>
+            </Link>
+
+            <Box>
+              Don&apos;t have an account?
+              <Link href="/signup">
+                <Button
+                  variantColor="cyan"
+                  variant="outline"
+                  ml={theme.space[4]}
+                >
+                  Sign up
+                </Button>
+              </Link>
+            </Box>
+          </Flex>
           <Flex direction="row" align="center" justify="center" flex="1">
             <Flex direction="column" minW={320}>
               <Heading>Sign in</Heading>

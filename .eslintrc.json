@@ -35,6 +35,7 @@
         "import/prefer-default-export": "off",
         "jsx-a11y/anchor-is-valid": "off",
         "object-curly-newline":"off",
+        "operator-linebreak": "off",
         "import/extensions": [
           "error",
           "ignorePackages",

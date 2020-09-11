@@ -1,24 +1,7 @@
 import React from 'react';
 import Head from 'next/head';
-import {
-  Button,
-  Box,
-  Flex,
-  useTheme,
-  FormControl,
-  FormLabel,
-  Input,
-  Heading,
-  FormErrorMessage,
-} from '@chakra-ui/core';
-import { Formik, Field } from 'formik';
-import * as Yup from 'yup';
-import AppHeader from '../components/AppHeader';
-
-const SignInSchema = Yup.object().shape({
-  email: Yup.string().required('Email required'),
-  password: Yup.string().required('Password required'),
-});
+import { useTheme, Flex, Box, Button, Text } from '@chakra-ui/core';
+import Link from 'next/link';
 
 const Home: React.FC = () => {
   const theme = useTheme();
@@ -36,79 +19,48 @@ const Home: React.FC = () => {
           display="flex"
           flexDirection="column"
         >
-          <AppHeader />
-          <Flex direction="row" align="center" justify="center" flex="1">
-            <Flex direction="column" minW={320}>
-              <Heading>Sign in</Heading>
-              <Formik
-                initialValues={{ email: '', password: '' }}
-                validateOnChange={false}
-                validateOnBlur={false}
-                validationSchema={SignInSchema}
-                onSubmit={(values, { setSubmitting }) => {
-                  setTimeout(() => {
-                    setSubmitting(false);
-                  }, 400);
-                }}
+          <Flex
+            as="header"
+            bg="cyan.600"
+            height="60px"
+            direction="row"
+            align="center"
+            justify="space-between"
+            px="5"
+          >
+            <Link href="/">
+              <Text
+                color={theme.colors.white}
+                userSelect="none"
+                fontSize={theme.fontSizes['2xl']}
+                cursor="pointer"
               >
-                {(props) => (
-                  <form
-                    onSubmit={props.handleSubmit}
-                    style={{ marginTop: theme.space[6] }}
-                  >
-                    <Field name="email" re>
-                      {({ field, form }) => (
-                        <FormControl
-                          isInvalid={form.errors.email && form.touched.email}
-                        >
-                          <FormLabel htmlFor="email">Email address</FormLabel>
-                          <Input
-                            {...field}
-                            focusBorderColor={theme.colors.cyan[500]}
-                            id="email"
-                            placeholder="Enter email address"
-                          />
-                          <FormErrorMessage>
-                            {form.errors.email}
-                          </FormErrorMessage>
-                        </FormControl>
-                      )}
-                    </Field>
-                    <Field name="password">
-                      {({ field, form }) => (
-                        <FormControl
-                          isInvalid={
-                            form.errors.password && form.touched.password
-                          }
-                          mt={theme.space[4]}
-                        >
-                          <FormLabel htmlFor="password">Password</FormLabel>
-                          <Input
-                            focusBorderColor={theme.colors.cyan[500]}
-                            {...field}
-                            id="password"
-                            placeholder="Enter password"
-                          />
-                          <FormErrorMessage>
-                            {form.errors.password}
-                          </FormErrorMessage>
-                        </FormControl>
-                      )}
-                    </Field>
+                link-hub
+              </Text>
+            </Link>
 
-                    <Button
-                      mt={theme.space[6]}
-                      isFullWidth
-                      variantColor="cyan"
-                      isLoading={props.isSubmitting}
-                      type="submit"
-                    >
-                      Sign in
-                    </Button>
-                  </form>
-                )}
-              </Formik>
-            </Flex>
+            <Box>
+              <Link href="/signin">
+                <Button
+                  variant="ghost"
+                  color="white"
+                  mr={theme.space[4]}
+                  _hover={{ bg: theme.colors.cyan[500] }}
+                >
+                  Sign in
+                </Button>
+              </Link>
+
+              <Link href="/signup">
+                <Button
+                  variant="ghost"
+                  color="white"
+                  _hover={{ bg: theme.colors.cyan[500] }}
+                >
+                  Sign up
+                </Button>
+              </Link>
+            </Box>
           </Flex>
         </Box>
       </main>
