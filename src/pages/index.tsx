@@ -21,7 +21,7 @@ const Home: React.FC = () => {
         >
           <Flex
             as="header"
-            bg="blue.600"
+            bg={theme.colors.cyan[500]}
             height="60px"
             direction="row"
             align="center"
@@ -47,7 +47,16 @@ const Home: React.FC = () => {
               </Link>
 
               <Link href="/signup">
-                <Button variantColor="green">Sign up</Button>
+                <Button
+                  variantColor="gray"
+                  // color={theme.colors.white}
+                  // _hover={{
+                  //   bg: theme.colors.cyan[700],
+                  // }}
+                  // bg={theme.colors.cyan[800]}
+                >
+                  Sign up
+                </Button>
               </Link>
             </Box>
           </Flex>

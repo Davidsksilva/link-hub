@@ -74,7 +74,7 @@ const SignUp: React.FC = () => {
               <Text
                 cursor="pointer"
                 userSelect="none"
-                color={theme.colors.blue[600]}
+                color={theme.colors.cyan[500]}
                 fontSize={theme.fontSizes['2xl']}
               >
                 link-hub
@@ -85,7 +85,7 @@ const SignUp: React.FC = () => {
               Already have an account?
               <Link href="/signin">
                 <Button
-                  variantColor="blue"
+                  variantColor="cyan"
                   variant="outline"
                   ml={theme.space[4]}
                 >
@@ -96,7 +96,7 @@ const SignUp: React.FC = () => {
           </Flex>
           <Flex direction="row" align="center" justify="center" flex="1">
             <Flex direction="column" minW={380}>
-              <Heading>Sign up</Heading>
+              <Heading color={theme.colors.gray[600]}>Sign up</Heading>
               <Formik
                 initialValues={initialValues}
                 validateOnChange={false}
@@ -124,10 +124,15 @@ const SignUp: React.FC = () => {
                                     form.errors.name && form.touched.name
                                   }
                                 >
-                                  <FormLabel htmlFor="name">Name</FormLabel>
+                                  <FormLabel
+                                    htmlFor="name"
+                                    color={theme.colors.gray[600]}
+                                  >
+                                    Name
+                                  </FormLabel>
                                   <Input
                                     {...field}
-                                    focusBorderColor={theme.colors.blue[500]}
+                                    focusBorderColor={theme.colors.cyan[500]}
                                     id="name"
                                     placeholder="Enter name"
                                   />
@@ -147,12 +152,15 @@ const SignUp: React.FC = () => {
                                     form.touched.username
                                   }
                                 >
-                                  <FormLabel htmlFor="username">
+                                  <FormLabel
+                                    htmlFor="username"
+                                    color={theme.colors.gray[600]}
+                                  >
                                     Username
                                   </FormLabel>
                                   <Input
                                     {...field}
-                                    focusBorderColor={theme.colors.blue[500]}
+                                    focusBorderColor={theme.colors.cyan[500]}
                                     id="username"
                                     placeholder="Enter username"
                                   />
@@ -174,12 +182,15 @@ const SignUp: React.FC = () => {
                                 form.errors.email && form.touched.email
                               }
                             >
-                              <FormLabel htmlFor="email">
+                              <FormLabel
+                                htmlFor="email"
+                                color={theme.colors.gray[600]}
+                              >
                                 Email address
                               </FormLabel>
                               <Input
                                 {...field}
-                                focusBorderColor={theme.colors.blue[500]}
+                                focusBorderColor={theme.colors.cyan[500]}
                                 id="email"
                                 placeholder="Enter email address"
                               />
@@ -198,9 +209,14 @@ const SignUp: React.FC = () => {
                                 form.errors.password && form.touched.password
                               }
                             >
-                              <FormLabel htmlFor="password">Password</FormLabel>
+                              <FormLabel
+                                htmlFor="password"
+                                color={theme.colors.gray[600]}
+                              >
+                                Password
+                              </FormLabel>
                               <Input
-                                focusBorderColor={theme.colors.blue[500]}
+                                focusBorderColor={theme.colors.cyan[500]}
                                 {...field}
                                 id="password"
                                 placeholder="Enter password"
@@ -221,11 +237,14 @@ const SignUp: React.FC = () => {
                                 form.touched.passwordConfirmation
                               }
                             >
-                              <FormLabel htmlFor="passwordConfirmation">
+                              <FormLabel
+                                htmlFor="passwordConfirmation"
+                                color={theme.colors.gray[600]}
+                              >
                                 Password confirmation
                               </FormLabel>
                               <Input
-                                focusBorderColor={theme.colors.blue[500]}
+                                focusBorderColor={theme.colors.cyan[500]}
                                 {...field}
                                 id="passwordConfirmation"
                                 placeholder="Enter password confirmation"
@@ -240,7 +259,7 @@ const SignUp: React.FC = () => {
 
                       <Button
                         isFullWidth
-                        variantColor="blue"
+                        variantColor="cyan"
                         isLoading={props.isSubmitting}
                         type="submit"
                       >
