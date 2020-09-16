@@ -14,6 +14,7 @@ import {
 } from '@chakra-ui/core';
 import { Formik, Field } from 'formik';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import * as Yup from 'yup';
 
 const SignInSchema = Yup.object().shape({
@@ -23,6 +24,7 @@ const SignInSchema = Yup.object().shape({
 
 const SignIn: React.FC = () => {
   const theme = useTheme();
+  const router = useRouter();
 
   return (
     <div>
@@ -81,6 +83,7 @@ const SignIn: React.FC = () => {
                 onSubmit={(values, { setSubmitting }) => {
                   setTimeout(() => {
                     setSubmitting(false);
+                    router.push('/dashboard');
                   }, 400);
                 }}
               >
@@ -130,6 +133,7 @@ const SignIn: React.FC = () => {
                             focusBorderColor={theme.colors.cyan[500]}
                             {...field}
                             id="password"
+                            type="password"
                             placeholder="Enter password"
                           />
                           <FormErrorMessage>

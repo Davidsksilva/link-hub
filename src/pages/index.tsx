@@ -47,16 +47,7 @@ const Home: React.FC = () => {
               </Link>
 
               <Link href="/signup">
-                <Button
-                  variantColor="gray"
-                  // color={theme.colors.white}
-                  // _hover={{
-                  //   bg: theme.colors.cyan[700],
-                  // }}
-                  // bg={theme.colors.cyan[800]}
-                >
-                  Sign up
-                </Button>
+                <Button variantColor="gray">Sign up</Button>
               </Link>
             </Box>
           </Flex>
