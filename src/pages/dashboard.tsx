@@ -12,6 +12,7 @@ import {
   MenuGroup,
   MenuItem,
   MenuDivider,
+  Link as ChakraLink,
 } from '@chakra-ui/core';
 import Link from 'next/link';
 import { FiLogOut } from 'react-icons/fi';
@@ -97,6 +98,62 @@ const Dashboard: React.FC = () => {
                 Hello, <strong>David</strong>
               </Text>
             </Flex>
+          </Flex>
+          <Flex
+            flexDirection="row"
+            align="center"
+            justify="center"
+            mt={theme.space[10]}
+          >
+            <Flex
+              maxW="sm"
+              borderWidth="1px"
+              rounded="lg"
+              overflow="hidden"
+              direction="row"
+              align="center"
+              padding={theme.space[4]}
+              h={80}
+              w={160}
+            >
+              <Box
+                fontWeight={theme.fontWeights.semibold}
+                mr={theme.space[2]}
+                fontSize={theme.fontSizes['3xl']}
+              >
+                0
+              </Box>
+              links
+            </Flex>
+
+            <Flex
+              ml={theme.space[6]}
+              maxW="sm"
+              borderWidth="1px"
+              rounded="lg"
+              overflow="hidden"
+              direction="row"
+              align="center"
+              padding={theme.space[4]}
+              h={80}
+              w={160}
+            >
+              <Box
+                fontWeight={theme.fontWeights.semibold}
+                mr={theme.space[2]}
+                fontSize={theme.fontSizes['3xl']}
+              >
+                0%
+              </Box>
+              visitados
+            </Flex>
+          </Flex>
+          <Flex direction="column" align="center" mt={theme.space[4]}>
+            <Box bg={theme.colors.gray[100]} padding={theme.space[2]}>
+              <ChakraLink href="https://alexgolec.dev/google-interview-questions-deconstructed-the-knights-dialer/">
+                https://alexgolec.dev/google-interview-questions-deconstructed-the-knights-dialer/
+              </ChakraLink>
+            </Box>
           </Flex>
         </Box>
       </main>
