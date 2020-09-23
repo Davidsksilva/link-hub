@@ -13,9 +13,11 @@ import {
   MenuItem,
   MenuDivider,
   Link as ChakraLink,
+  Divider,
+  Heading,
 } from '@chakra-ui/core';
 import Link from 'next/link';
-import { FiLogOut } from 'react-icons/fi';
+import { FiLogOut, FiLink } from 'react-icons/fi';
 
 import { useRouter } from 'next/router';
 import avatarImg from '../assets/27-ninja.svg';
@@ -148,12 +150,30 @@ const Dashboard: React.FC = () => {
               visitados
             </Flex>
           </Flex>
+
           <Flex direction="column" align="center" mt={theme.space[4]}>
-            <Box bg={theme.colors.gray[100]} padding={theme.space[2]}>
+            <Box maxWidth={800} width="100%" mb={theme.space[4]}>
+              <Heading as="h3" size="lg" color={theme.colors.gray[600]}>
+                Listing all
+              </Heading>
+            </Box>
+
+            <Flex
+              bg={theme.colors.gray[100]}
+              padding={theme.space[2]}
+              direction="row"
+              align="center"
+              rounded="md"
+            >
+              <Box
+                as={FiLink}
+                mr={theme.space[2]}
+                color={theme.colors.gray[400]}
+              />
               <ChakraLink href="https://alexgolec.dev/google-interview-questions-deconstructed-the-knights-dialer/">
                 https://alexgolec.dev/google-interview-questions-deconstructed-the-knights-dialer/
               </ChakraLink>
-            </Box>
+            </Flex>
           </Flex>
         </Box>
       </main>
