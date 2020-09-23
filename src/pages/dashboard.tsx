@@ -147,7 +147,7 @@ const Dashboard: React.FC = () => {
               >
                 0%
               </Box>
-              visitados
+              visited
             </Flex>
           </Flex>
 
@@ -156,6 +156,7 @@ const Dashboard: React.FC = () => {
               <Heading as="h3" size="lg" color={theme.colors.gray[600]}>
                 Listing all
               </Heading>
+              <Divider />
             </Box>
 
             <Flex
