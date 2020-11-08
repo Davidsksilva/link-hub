@@ -13,9 +13,10 @@ import {
   Text,
   Stack,
 } from '@chakra-ui/core';
-import { Formik, Field } from 'formik';
+import { Formik, Field, FormikHelpers } from 'formik';
 import * as Yup from 'yup';
 import Link from 'next/link';
+import api from '../services/api';
 
 interface SignUpData {
   email: string;
@@ -47,6 +48,19 @@ const SignUp: React.FC = () => {
     passwordConfirmation: '',
     username: '',
   };
+
+  async function handleSignUp(
+    data: SignUpData,
+    { setSubmitting }: FormikHelpers<SignUpData>,
+  ) {
+    try {
+      await api.post('/users', data);
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setSubmitting(false);
+    }
+  }
 
   return (
     <div>
@@ -102,11 +116,7 @@ const SignUp: React.FC = () => {
                 validateOnChange={false}
                 validateOnBlur={false}
                 validationSchema={SignUpSchema}
-                onSubmit={(values, { setSubmitting }) => {
-                  setTimeout(() => {
-                    setSubmitting(false);
-                  }, 400);
-                }}
+                onSubmit={handleSignUp}
               >
                 {(props) => (
                   <form
@@ -216,6 +226,7 @@ const SignUp: React.FC = () => {
                                 Password
                               </FormLabel>
                               <Input
+                                type="password"
                                 focusBorderColor={theme.colors.cyan[500]}
                                 {...field}
                                 id="password"
@@ -244,6 +255,7 @@ const SignUp: React.FC = () => {
                                 Password confirmation
                               </FormLabel>
                               <Input
+                                type="password"
                                 focusBorderColor={theme.colors.cyan[500]}
                                 {...field}
                                 id="passwordConfirmation"
