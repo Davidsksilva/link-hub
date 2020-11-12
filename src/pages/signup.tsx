@@ -64,6 +64,7 @@ const SignUp: React.FC = () => {
         status: 'error',
         duration: 5000,
         isClosable: true,
+        position: 'bottom-left',
       });
       console.error(err);
     } finally {
