@@ -12,6 +12,7 @@ import {
   Button,
   Text,
   Stack,
+  useToast,
 } from '@chakra-ui/core';
 import { Formik, Field, FormikHelpers } from 'formik';
 import * as Yup from 'yup';
@@ -39,6 +40,7 @@ const SignUpSchema = Yup.object().shape({
 });
 
 const SignUp: React.FC = () => {
+  const toast = useToast();
   const theme = useTheme();
 
   const initialValues: SignUpData = {
@@ -56,6 +58,13 @@ const SignUp: React.FC = () => {
     try {
       await api.post('/users', data);
     } catch (err) {
+      toast({
+        title: 'An error occurred.',
+        description: 'Unable to create user account.',
+        status: 'error',
+        duration: 5000,
+        isClosable: true,
+      });
       console.error(err);
     } finally {
       setSubmitting(false);
