@@ -52,11 +52,19 @@ const SignUp: React.FC = () => {
   };
 
   async function handleSignUp(
-    data: SignUpData,
+    { email, password, name }: SignUpData,
     { setSubmitting }: FormikHelpers<SignUpData>,
   ) {
     try {
-      await api.post('/users', data);
+      await api.post('/users', { email, password, name });
+      toast({
+        title: 'Account created.',
+        description: "We've created your account for you.",
+        status: 'success',
+        duration: 5000,
+        isClosable: true,
+        position: 'bottom-left',
+      });
     } catch (err) {
       toast({
         title: 'An error occurred.',
