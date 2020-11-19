@@ -34,7 +34,6 @@ const AuthContext = createContext<AuthContextData>({} as AuthContextData);
 
 export const AuthProvider: React.FC = ({ children }) => {
   const [data, setData] = useState<AuthState>({} as AuthState);
-
   useEffect(() => {
     const token = localStorage.getItem('@LinkHub:token');
     const user = localStorage.getItem('@LinkHub:user');

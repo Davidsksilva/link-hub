@@ -11,11 +11,18 @@ import {
   Heading,
   FormErrorMessage,
   Text,
+  useToast,
 } from '@chakra-ui/core';
-import { Formik, Field } from 'formik';
+import { Formik, Field, FormikHelpers } from 'formik';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import * as Yup from 'yup';
+import { useAuth } from '../hooks/auth';
+
+interface SignInData {
+  email: string;
+  password: string;
+}
 
 const SignInSchema = Yup.object().shape({
   email: Yup.string().required('Email required'),
@@ -25,6 +32,29 @@ const SignInSchema = Yup.object().shape({
 const SignIn: React.FC = () => {
   const theme = useTheme();
   const router = useRouter();
+  const toast = useToast();
+  const { signIn } = useAuth();
+
+  async function handleSignIn(
+    { email, password }: SignInData,
+    { setSubmitting }: FormikHelpers<SignInData>,
+  ) {
+    try {
+      await signIn({ email, password });
+      router.push('/dashboard');
+    } catch (err) {
+      toast({
+        title: 'An error occurred.',
+        description: 'Unable to create user account.',
+        status: 'error',
+        duration: 5000,
+        isClosable: true,
+        position: 'bottom-left',
+      });
+    } finally {
+      setSubmitting(false);
+    }
+  }
 
   return (
     <div>
@@ -80,12 +110,7 @@ const SignIn: React.FC = () => {
                 validateOnChange={false}
                 validateOnBlur={false}
                 validationSchema={SignInSchema}
-                onSubmit={(values, { setSubmitting }) => {
-                  setTimeout(() => {
-                    setSubmitting(false);
-                    router.push('/dashboard');
-                  }, 400);
-                }}
+                onSubmit={handleSignIn}
               >
                 {(props) => (
                   <form

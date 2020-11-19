@@ -74,7 +74,6 @@ const SignUp: React.FC = () => {
         isClosable: true,
         position: 'bottom-left',
       });
-      console.error(err);
     } finally {
       setSubmitting(false);
     }

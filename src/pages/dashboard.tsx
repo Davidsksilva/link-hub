@@ -17,14 +17,17 @@ import {
   Heading,
 } from '@chakra-ui/core';
 import Link from 'next/link';
+import dynamic from 'next/dynamic';
 import { FiLogOut, FiLink } from 'react-icons/fi';
 
 import { useRouter } from 'next/router';
 import avatarImg from '../assets/27-ninja.svg';
+import { useAuth } from '../hooks/auth';
 
 const Dashboard: React.FC = () => {
   const theme = useTheme();
   const router = useRouter();
+  const { user } = useAuth();
 
   return (
     <div>
@@ -97,7 +100,11 @@ const Dashboard: React.FC = () => {
               </Menu>
 
               <Text color={theme.colors.white}>
-                Hello, <strong>David</strong>
+                Hello,
+                <strong>
+                  {' '}
+                  {user.name}
+                </strong>
               </Text>
             </Flex>
           </Flex>
@@ -182,4 +189,6 @@ const Dashboard: React.FC = () => {
   );
 };
 
-export default Dashboard;
+export default dynamic(() => Promise.resolve(Dashboard), {
+  ssr: false,
+});
