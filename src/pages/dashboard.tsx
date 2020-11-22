@@ -15,10 +15,12 @@ import {
   Link as ChakraLink,
   Divider,
   Heading,
+  IconButton,
+  Tooltip,
 } from '@chakra-ui/core';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
-import { FiLogOut, FiLink } from 'react-icons/fi';
+import { FiLogOut, FiLink, FiPlus } from 'react-icons/fi';
 
 import { useRouter } from 'next/router';
 import avatarImg from '../assets/27-ninja.svg';
@@ -27,7 +29,12 @@ import { useAuth } from '../hooks/auth';
 const Dashboard: React.FC = () => {
   const theme = useTheme();
   const router = useRouter();
-  const { user } = useAuth();
+  const { user, signOut } = useAuth();
+
+  function handleSignOut() {
+    signOut();
+    router.push('/');
+  }
 
   return (
     <div>
@@ -90,7 +97,7 @@ const Dashboard: React.FC = () => {
                   <MenuGroup>
                     <MenuItem
                       color={theme.colors.red[500]}
-                      onClick={() => router.push('/')}
+                      onClick={handleSignOut}
                     >
                       <Box as={FiLogOut} mr={theme.space[2]} />
                       Log out
@@ -160,9 +167,12 @@ const Dashboard: React.FC = () => {
 
           <Flex direction="column" align="center" mt={theme.space[4]}>
             <Box maxWidth={800} width="100%" mb={theme.space[4]}>
-              <Heading as="h3" size="lg" color={theme.colors.gray[600]}>
-                Listing all
-              </Heading>
+              <Flex direction="row" align="center" justify="space-between">
+                <Heading as="h3" size="lg" color={theme.colors.gray[600]}>
+                  Listing all
+                </Heading>
+              </Flex>
+
               <Divider />
             </Box>
 
@@ -183,6 +193,23 @@ const Dashboard: React.FC = () => {
               </ChakraLink>
             </Flex>
           </Flex>
+        </Box>
+        <Box
+          position="absolute"
+          right={theme.space[4]}
+          bottom={theme.space[4]}
+        >
+
+          <Tooltip label="Add a link" aria-label="Add link">
+            <IconButton
+
+              size="lg"
+              variantColor="cyan"
+              aria-label="Add link"
+              fontSize="32px"
+              icon={FiPlus}
+            />
+          </Tooltip>
         </Box>
       </main>
     </div>
