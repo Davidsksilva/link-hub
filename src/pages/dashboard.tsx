@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Head from 'next/head';
 import {
   useTheme,
@@ -25,11 +25,13 @@ import { FiLogOut, FiLink, FiPlus } from 'react-icons/fi';
 import { useRouter } from 'next/router';
 import avatarImg from '../assets/27-ninja.svg';
 import { useAuth } from '../hooks/auth';
+import AddLinkModal from '../components/AddLinkModal';
 
 const Dashboard: React.FC = () => {
   const theme = useTheme();
   const router = useRouter();
   const { user, signOut } = useAuth();
+  const [addLinkModalOpen, setAddLinkModalOpen] = useState(false);
 
   function handleSignOut() {
     signOut();
@@ -194,20 +196,22 @@ const Dashboard: React.FC = () => {
             </Flex>
           </Flex>
         </Box>
+
+        <AddLinkModal isOpen={addLinkModalOpen} onClose={() => setAddLinkModalOpen(false)} />
+
         <Box
           position="absolute"
           right={theme.space[4]}
           bottom={theme.space[4]}
         >
-
           <Tooltip label="Add a link" aria-label="Add link">
             <IconButton
-
               size="lg"
               variantColor="cyan"
               aria-label="Add link"
               fontSize="32px"
               icon={FiPlus}
+              onClick={() => setAddLinkModalOpen(true)}
             />
           </Tooltip>
         </Box>
