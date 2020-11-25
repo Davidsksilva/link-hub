@@ -40,7 +40,7 @@ const AddLinkModal: React.FC<ModalProps> = ({ onAction, onClose, isOpen }) => {
   }, [linkUrl]);
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose} isCentered>
+    <Modal isOpen={isOpen} onClose={onClose} isCentered closeOnOverlayClick={false}>
       <ModalOverlay />
       <ModalContent>
         <ModalHeader>Stash Link</ModalHeader>
