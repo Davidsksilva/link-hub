@@ -3,9 +3,12 @@ import React, {
   useCallback,
   useState,
   useContext,
-  useEffect,
 } from 'react';
+import Cookies from 'js-cookie';
+import { NextPage } from 'next';
 import api from '../services/api';
+import parseCookies from '../utils/parseCookies';
+import { TOKEN_COOKIE_KEY, USER_COOKIE_KEY } from '../constants';
 
 interface User {
   id: string;
@@ -32,18 +35,28 @@ interface AuthContextData {
 
 const AuthContext = createContext<AuthContextData>({} as AuthContextData);
 
-export const AuthProvider: React.FC = ({ children }) => {
-  const [data, setData] = useState<AuthState>({} as AuthState);
-  useEffect(() => {
-    const token = localStorage.getItem('@LinkHub:token');
-    const user = localStorage.getItem('@LinkHub:user');
+interface AuthProviderProps{
+  initialUserValue: string;
+  initialTokenValue: string;
+}
+
+const AuthProvider : NextPage<AuthProviderProps> = ({
+  children,
+  initialUserValue,
+  initialTokenValue,
+}) => {
+  const [data, setData] = useState<AuthState>(() => {
+    const token = JSON.parse(initialTokenValue);
+    const user = JSON.parse(initialUserValue);
 
     if (token && user) {
       api.defaults.headers.authorization = `Bearer ${token}`;
 
-      setData({ token, user: JSON.parse(user) });
+      return { token, user };
     }
-  }, []);
+
+    return {} as AuthState;
+  });
 
   const signIn = useCallback(async ({ email, password }) => {
     const response = await api.post('/sessions', {
@@ -53,8 +66,8 @@ export const AuthProvider: React.FC = ({ children }) => {
 
     const { token, user } = response.data;
 
-    localStorage.setItem('@LinkHub:token', token);
-    localStorage.setItem('@LinkHub:user', JSON.stringify(user));
+    Cookies.set(TOKEN_COOKIE_KEY, token);
+    Cookies.set(USER_COOKIE_KEY, JSON.stringify(user));
 
     api.defaults.headers.authorization = `Bearer ${token}`;
 
@@ -62,15 +75,15 @@ export const AuthProvider: React.FC = ({ children }) => {
   }, []);
 
   const signOut = useCallback(() => {
-    localStorage.removeItem('@LinkHub:token');
-    localStorage.removeItem('@LinkHub:user');
+    Cookies.remove(TOKEN_COOKIE_KEY);
+    Cookies.remove(USER_COOKIE_KEY);
 
     setData({} as AuthState);
   }, []);
 
   const updateUser = useCallback(
     (user: User) => {
-      localStorage.removeItem('@LinkHub:user');
+      Cookies.remove(USER_COOKIE_KEY);
       setData({
         token: data.token,
         user,
@@ -92,6 +105,15 @@ export const AuthProvider: React.FC = ({ children }) => {
       {children}
     </AuthContext.Provider>
   );
+};
+
+AuthProvider.getInitialProps = ({ req }) => {
+  const cookies = parseCookies(req);
+
+  return {
+    initialTokenValue: cookies[TOKEN_COOKIE_KEY],
+    initialUserValue: cookies[USER_COOKIE_KEY],
+  };
 };
 
 export function useAuth(): AuthContextData {
